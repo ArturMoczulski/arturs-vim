@@ -180,25 +180,8 @@ au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 """""""""""""""""""""""
 autocmd FileType crontab setlocal backupcopy=yes
 
-" turn-on distraction free writing mode for markdown files
-" au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
-
-function! DistractionFreeWriting()
-    colorscheme iawriter
-    set background=light
-    set lines=60 columns=100           " size of the editable area
-    set fuoptions=background:#00f5f6f6 " macvim specific setting for editor's background color
-    set guioptions-=r                  " remove right scrollbar
-    set laststatus=2                   " don't show status line
-    set noruler                        " don't show ruler
-    set fullscreen                     " go to fullscreen editing mode
-    set linebreak                      " break the lines on words
-endfunction
-
-:map <F8> :call DistractionFreeWriting()<CR>
-
 " Toggle spellcheck in normal mode
-:map <F5> :setlocal spell! spelllang=en_us<CR>
+" :map <F5> :setlocal spell! spelllang=en_us<CR>
 
 " Ruby Configurations
 """""""""""""""""""""
@@ -280,7 +263,7 @@ let g:gist_post_private = 1
 
 " TagBar
 nnoremap <silent> <F2> :TagbarToggle<CR>
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+let g:tagbar_ctags_bin = '/usr/bin/ctags'
 let g:tagbar_autoshowtag = 1
 let g:tagbar_autofocus = 1
 
@@ -313,13 +296,15 @@ let g:syntastic_puppet_lint_disable = 0
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
-" Key mappings
+" Key mappings 
 map <tab> <C-W>w
 map <C-x> :q!<CR>
 map - <C-w>-
 map = <C-w>+
-map <C-n> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+map <F5> :Errors<CR>
+map <F7> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
 map <F9> :e $MYVIMRC<CR>
 map <c-s> :w<CR>
-imap <c-s> <c-o> :w<CR>
+
