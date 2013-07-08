@@ -1,6 +1,7 @@
 set encoding=utf-8
 set nocompatible               " be iMproved
 filetype off                   " required!
+set noswapfile
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -33,6 +34,7 @@ Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'ervandew/supertab'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
@@ -59,6 +61,9 @@ Bundle 'jmcantrell/vim-virtualenv'
 " Ruby specific
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
+
+" PHP
+Bundle 'vim-scripts/PHPUnit-QF'
 
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
@@ -128,6 +133,7 @@ set undolevels=1000      " use many muchos levels of undo
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
+set t_vb= 
 set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
@@ -139,9 +145,9 @@ endif
 set list listchars=tab:»\ ,trail:·
 
 " Default Tabs & spaces
-set tabstop=2     " a tab is four spaces
-set shiftwidth=2  " number of spaces to use for autoindenting
-set softtabstop=2
+set tabstop=4     " a tab is four spaces
+set shiftwidth=4  " number of spaces to use for autoindenting
+set softtabstop=4
 set expandtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set smarttab      " insert tabs on the start of a line according to
@@ -302,9 +308,9 @@ map <C-x> :q!<CR>
 map - <C-w>-
 map = <C-w>+
 map <F2> :NERDTreeToggle<CR>
-map <F5> :Errors<CR>
-map <F7> :TagbarToggle<CR>
+map <F3> :Errors<CR>
+map <F4> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
 map <F9> :e $MYVIMRC<CR>
 map <c-s> :w<CR>
-
+map <Backspace> :noh<CR>
