@@ -239,6 +239,9 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 au BufNewFile,BufRead *.game set filetype=php
 au BufNewFile,BufRead *.fig set filetype=php
 
+" XDebug syntax
+au BufNewFile,BufRead *.xt  setf xt
+
 " Custom mappings
 """"""""""""""""""
 
