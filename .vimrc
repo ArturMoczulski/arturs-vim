@@ -145,12 +145,12 @@ if has("gui_running")
 endif
 
 " Special characters for hilighting non-priting spaces/tabs/etc.
-set list listchars=tab:»\ ,trail:·
+" set list listchars=tab:»\ ,trail:·
 
 " Default Tabs & spaces
-set tabstop=2     " a tab is four spaces
-set shiftwidth=2  " number of spaces to use for autoindenting
-set softtabstop=2
+set tabstop=4     " a tab is four spaces
+set shiftwidth=4 " number of spaces to use for autoindenting
+set softtabstop=4
 set expandtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set smarttab      " insert tabs on the start of a line according to
@@ -312,6 +312,9 @@ let g:syntastic_puppet_lint_disable = 0
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
+" Testing
+let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
+
 " Key mappings 
 map <tab> <C-W>w
 map <C-x> :q!<CR>
@@ -322,5 +325,4 @@ map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
 map <F9> :e $MYVIMRC<CR>
-map <C-s> :w<CR>
-map <Backspace> :noh<CR>
+map <C-a> :w<CR>
