@@ -1,22 +1,3 @@
-" CodeSchool layout {
-  if has("gui_running")
-    color codeschool
-    set guifont=Consolas:13
-    let g:NERDTreeWinPos = "right"
-  endif
-" }
-
-" Solarized layout {
-  "if !has("gui_running")
-      ""colorscheme chance-of-storm
-      "colorscheme solarized
-      "let g:solarized_termtrans=1
-  "else
-      "colorscheme solarized
-      "let g:solarized_termtrans=1
-  "endif
-" }
-
 set encoding=utf-8
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -91,7 +72,6 @@ Bundle 'vim-scripts/PHPUnit-QF'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/chance-of-storm'
 Bundle 'skammer/vim-css-color'
-Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'Lokaltog/powerline'
 Bundle 'chriskempson/base16-vim'
@@ -148,7 +128,7 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set t_vb= 
-set guifont=Menlo\ for\ Powerline:h11
+" set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -326,6 +306,24 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 " Testing
 let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
 
+" Look&feel layout {
+  if has("gui_running")
+    colorscheme codeschool
+    set guifont=Monospace\ 16
+    let g:NERDTreeWinPos = "right"
+  endif
+" }
+
+" Solarized layout {
+  "if !has("gui_running")
+      "colorscheme solarized
+      "let g:solarized_termtrans=1
+  "else
+      "colorscheme solarized
+      "let g:solarized_termtrans=1
+  "endif
+" }
+
 " Key mappings 
 """""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
@@ -341,6 +339,8 @@ map <tab> <C-W>w
 map <C-x> :q!<CR>
 map - <C-w>-
 map = <C-w>+
+map <C-[> <C-w>>
+map <C-]> <C-w><
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
