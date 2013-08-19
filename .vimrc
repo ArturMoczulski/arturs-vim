@@ -72,11 +72,11 @@ Bundle 'vim-scripts/PHPUnit-QF'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/chance-of-storm'
 Bundle 'skammer/vim-css-color'
-Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'Lokaltog/powerline'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
+Bundle 'https://github.com/dandorman/vim-colors.git'
 
 filetype plugin indent on     " required!
 
@@ -106,15 +106,6 @@ au TabLeave * silent! :wa
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-if !has("gui_running")
-    "colorscheme chance-of-storm
-    colorscheme solarized
-    let g:solarized_termtrans=1
-else
-    colorscheme solarized
-    let g:solarized_termtrans=1
-endif
-
 " Basic
 syntax enable
 set number        " always show line numbers
@@ -137,7 +128,7 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set t_vb= 
-set guifont=Menlo\ for\ Powerline:h11
+" set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -145,7 +136,7 @@ if has("gui_running")
 endif
 
 " Special characters for hilighting non-priting spaces/tabs/etc.
-set list listchars=tab:»\ ,trail:·
+" set list listchars=tab:»\ ,trail:·
 
 " Default Tabs & spaces
 set tabstop=2     " a tab is four spaces
@@ -176,10 +167,10 @@ vnoremap / /\v
 " General auto-commands
 """""""""""""""""""""""
 autocmd FileType * setlocal colorcolumn=0
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Get rid of trailing whitespace highlighting in mutt.
-autocmd FileType mail highlight clear ExtraWhitespace
+" autocmd FileType mail highlight clear ExtraWhitespace
 autocmd FileType mail setlocal listchars=
 
 " Reformat XML files
@@ -194,7 +185,7 @@ autocmd FileType crontab setlocal backupcopy=yes
 
 " Ruby Configurations
 """""""""""""""""""""
-autocmd filetype ruby setlocal noexpandtab shiftwidth=2 tabstop=2
+autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2
 
 " PHP Configurations
 """"""""""""""""""""
@@ -220,6 +211,7 @@ au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
 " Javascript configurations
 """""""""""""""""""""""""""
 au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
+let g:syntastic_javascript_checkers = ['jslint']
 
 " Puppet configurations
 """""""""""""""""""""""
@@ -229,11 +221,14 @@ au FileType puppet setlocal noexpandtab
 au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
 
 " Make sure we hilight extra whitespace in the most annoying way possible.
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" highlight ExtraWhitespace ctermbg=none guibg=none
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
+" XDebug syntax
+au BufNewFile,BufRead *.xt  setf xt
 
 " PHP Configuration
 au BufNewFile,BufRead *.game set filetype=php
@@ -309,11 +304,44 @@ let g:syntastic_puppet_lint_disable = 0
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
+" Testing
+let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
+
+" Look&feel layout {
+  if has("gui_running")
+    colorscheme codeschool
+    set guifont=Monospace\ 16
+    let g:NERDTreeWinPos = "right"
+  endif
+" }
+
+" Solarized layout {
+  "if !has("gui_running")
+      "colorscheme solarized
+      "let g:solarized_termtrans=1
+  "else
+      "colorscheme solarized
+      "let g:solarized_termtrans=1
+  "endif
+" }
+
 " Key mappings 
+"""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ; :
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Others
 map <tab> <C-W>w
 map <C-x> :q!<CR>
 map - <C-w>-
 map = <C-w>+
+map <C-[> <C-w>>
+map <C-]> <C-w><
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
