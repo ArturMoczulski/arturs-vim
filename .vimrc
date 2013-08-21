@@ -304,13 +304,10 @@ let g:syntastic_puppet_lint_disable = 0
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
-" Testing
-let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
-
 " Look&feel layout {
   if has("gui_running")
     colorscheme codeschool
-    set guifont=Monospace\ 16
+    set guifont=Monospace\ 10
     let g:NERDTreeWinPos = "right"
   endif
 " }
