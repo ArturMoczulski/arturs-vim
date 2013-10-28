@@ -23,7 +23,7 @@ Bundle 'tpope/vim-fugitive'
 " System
 Bundle 'mattn/webapi-vim'
 Bundle 'vim-scripts/Gist.vim'
-Bundle 'majutsushi/tagbar'
+Bundle 'https://github.com/vim-scripts/taglist.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
@@ -35,6 +35,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'ervandew/supertab'
+Bundle 'https://github.com/wesleyche/SrcExpl.git'
+Bundle 'https://github.com/wesleyche/Trinity.git'
+Bundle 'git://github.com/tpope/vim-unimpaired.git'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
@@ -77,6 +80,9 @@ Bundle 'Lokaltog/powerline'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
 Bundle 'https://github.com/dandorman/vim-colors.git'
+
+" Database
+Bundle "https://github.com/vim-scripts/dbext.vim.git"
 
 filetype plugin indent on     " required!
 
@@ -310,7 +316,7 @@ let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpu
 " Look&feel layout {
   if has("gui_running")
     colorscheme codeschool
-    set guifont=Monospace\ 16
+    set guifont=Monospace\ 10
     let g:NERDTreeWinPos = "right"
   endif
 " }
@@ -325,23 +331,30 @@ let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpu
   "endif
 " }
 
+" TalentCircles
+"""""""""""""""""""""""""""""""""""""""""""""
+cd ~/Projects/talentcircles/html
+
+" DBExt
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=alumwire'
+
 " Key mappings 
 """""""""""""""""""""""""""""""""""""""""""""
 nnoremap ; :
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " Others
 map <tab> <C-W>w
 map <C-x> :q!<CR>
 map - <C-w>-
 map = <C-w>+
-map <C-[> <C-w>>
-map <C-]> <C-w><
+map <A-[> <C-w>>
+map <A-]> <C-w><
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>

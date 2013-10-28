@@ -1,2 +1,2 @@
 " Key mappings
-" :map <F8> :Test %:p<CR>
+:map <F8> :Test %:p<CR>
