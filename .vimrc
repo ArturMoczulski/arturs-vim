@@ -1,3 +1,8 @@
+" @author Artur Moczulski <artur.moczulski@gmail.com>
+"
+" @see http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"
+
 set encoding=utf-8
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -134,6 +139,7 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set t_vb= 
+set gdefault
 " set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
@@ -340,6 +346,22 @@ let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=alumwire'
 
 " Key mappings 
 """""""""""""""""""""""""""""""""""""""""""""
+
+" Disable arrows
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+" I don't even fully understand these 2: 'It also makes j and k work the way you expect instead of working in some archaic “movement by file line instead of screen line” fashion.'
+nnoremap j gj
+nnoremap k gk
+
+" Disable annoying help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" Make colon commands more accessible
 nnoremap ; :
 
 " Easy window navigation
@@ -347,6 +369,10 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" Copy & pasting
+"   select pasted text
+nnoremap <leader>v V`]
 
 " Others
 map <tab> <C-W>w
@@ -359,6 +385,6 @@ map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
-map <F9> :e $MYVIMRC<CR>
+map <F9> :vs $MYVIMRC<CR>
 map <C-a> :w<CR>
 map <Backspace> :noh<CR>
