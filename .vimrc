@@ -140,6 +140,7 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 set t_vb= 
 set gdefault
+set relativenumber
 " set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
@@ -347,11 +348,6 @@ let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=alumwire'
 " Key mappings 
 """""""""""""""""""""""""""""""""""""""""""""
 
-" Disable arrows
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 " I don't even fully understand these 2: 'It also makes j and k work the way you expect instead of working in some archaic “movement by file line instead of screen line” fashion.'
 nnoremap j gj
 nnoremap k gk
@@ -361,14 +357,15 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" Make colon commands more accessible
-nnoremap ; :
-
 " Easy window navigation
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
+"noremap <A-h> <C-w>h
+"noremap <A-t> <C-w>j
+"noremap <A-n> <C-w>k
+"noremap <A-s> <C-w>l
 
 " Copy & pasting
 "   select pasted text
@@ -388,3 +385,40 @@ map <F12> :so $MYVIMRC<CR>
 map <F9> :vs $MYVIMRC<CR>
 map <C-a> :w<CR>
 map <Backspace> :noh<CR>
+
+" Dvorak layout
+"no <C-h> h
+"no t j
+"no n k
+"no <C-s> l
+"no <C-t> <C-d>
+"no <C-n> <C-u>
+"no s w
+"no h b
+"no ' u
+"no e x
+"no <C-e> <C-x>
+"map u ciw
+
+" Qwerty layout
+no <C-h> h
+no l w
+no h b
+no <C-l> l
+no z u
+no <C-j> <C-d>
+no <C-k> <C-u>
+
+" Text manipulation
+no ; $a;<Esc>
+no a v
+no <S-a> <S-v>
+
+" Switch modes
+inoremap hh <Esc>
+no <Space> i
+no <C-Space> a
+
+no # n
+no ! N
+let NERDTreeMapOpenInTab='p'
