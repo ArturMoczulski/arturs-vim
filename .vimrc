@@ -26,37 +26,37 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 
 " System
-Bundle 'mattn/webapi-vim'
-Bundle 'vim-scripts/Gist.vim'
-Bundle 'https://github.com/vim-scripts/taglist.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'Raimondi/delimitMate'
+" Bundle 'mattn/webapi-vim'
+" Bundle 'vim-scripts/Gist.vim'
+" Bundle 'https://github.com/vim-scripts/taglist.vim'
+ Bundle 'mileszs/ack.vim'
+" Bundle 'scrooloose/nerdcommenter'
+" Bundle 'tpope/vim-surround'
+" Bundle 'scrooloose/syntastic'
+" Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'ervandew/supertab'
-Bundle 'https://github.com/wesleyche/SrcExpl.git'
-Bundle 'https://github.com/wesleyche/Trinity.git'
-Bundle 'git://github.com/tpope/vim-unimpaired.git'
+" Bundle 'https://github.com/wesleyche/SrcExpl.git'
+" Bundle 'https://github.com/wesleyche/Trinity.git'
+" Bundle 'git://github.com/tpope/vim-unimpaired.git'
 
 " Syntaxes and such.
-Bundle 'tpope/vim-cucumber'
+" Bundle 'tpope/vim-cucumber'
 Bundle 'leshill/vim-json'
-Bundle 'tpope/vim-liquid'
-Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'tpope/vim-haml'
-Bundle 'kchmck/vim-coffee-script'
+" Bundle 'tpope/vim-liquid'
+" Bundle 'puppetlabs/puppet-syntax-vim'
+" Bundle 'tpope/vim-haml'
+" Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'groenewege/vim-less'
-Bundle 'othree/html5.vim'
-Bundle 'mutewinter/nginx.vim'
-Bundle 'msanders/cocoa.vim'
-Bundle 'empanda/vim-varnish'
+" Bundle 'othree/html5.vim'
+" Bundle 'mutewinter/nginx.vim'
+" Bundle 'msanders/cocoa.vim'
+" Bundle 'empanda/vim-varnish'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
 
@@ -64,30 +64,30 @@ Bundle 'atourino/jinja.vim'
 Bundle 'joonty/vdebug.git' 
 
 " Python bundles
-Bundle 'nvie/vim-flake8'
-Bundle 'fs111/pydoc.vim'
-Bundle 'vim-scripts/python_match.vim'
-Bundle 'jmcantrell/vim-virtualenv'
+" Bundle 'nvie/vim-flake8'
+" Bundle 'fs111/pydoc.vim'
+" Bundle 'vim-scripts/python_match.vim'
+" Bundle 'jmcantrell/vim-virtualenv'
 
 " Ruby specific
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
 " PHP
-Bundle 'vim-scripts/PHPUnit-QF'
+" Bundle 'vim-scripts/PHPUnit-QF'
 
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/chance-of-storm'
-Bundle 'skammer/vim-css-color'
-Bundle 'ehamberg/vim-cute-python'
+" Bundle 'skammer/vim-css-color'
+" Bundle 'ehamberg/vim-cute-python'
 Bundle 'Lokaltog/powerline'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
 Bundle 'https://github.com/dandorman/vim-colors.git'
 
 " Database
-Bundle "https://github.com/vim-scripts/dbext.vim.git"
+" Bundle "https://github.com/vim-scripts/dbext.vim.git"
 
 filetype plugin indent on     " required!
 
@@ -141,7 +141,8 @@ set noerrorbells         " don't beep
 set t_vb= 
 set gdefault
 set relativenumber
-" set guifont=Menlo\ for\ Powerline:h11
+set guifont=Sauce\ Code\ Powerline:h14
+let g:Powerline_sybmols = 'fancy'
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -323,7 +324,7 @@ let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpu
 " Look&feel layout {
   if has("gui_running")
     colorscheme codeschool
-    set guifont=Monospace\ 10
+    " set guifont=Monospace\ 10
     let g:NERDTreeWinPos = "right"
   endif
 " }
