@@ -12,7 +12,7 @@
 " * Plugins loading
 " * General
 " * VIM user interface
-" * Colors and Fonts
+" * Colors, fonts, encoding
 " * Files and backups
 " * Text, tab and indent related
 " * Visual mode related
@@ -122,22 +122,17 @@ Bundle 'https://github.com/dandorman/vim-colors.git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype off                  " required! how is this required?
-set encoding=utf-8
 set nocompatible              " Be iMproved
-set noswapfile
 set autoread
 
 set clipboard=unnamed         " Share system clipboard.
-set backspace=indent,eol,start " Make backspace behave normally.
-set directory=/tmp//          " Swap files
-set backupskip=/tmp/*,/private/tmp/*
 set ffs=unix,dos,mac          " Default file types
 set history=1000              " Remember more commands and search history
-set undolevels=1000           " Use many muchos levels of undo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set undolevels=1000           " Use many muchos levels of undo
 set so=3                      " Set lines to the cursor when 
                               " moving lines
 set showcmd                   " Show the command being typed
@@ -153,6 +148,7 @@ set t_vb=                     " Turn off visual bell
 set gdefault                  " Default global search
 set relativenumber            " Make lines numbers more useful
 let g:NERDTreeWinPos = "right" " Put NERDTree on the side
+set backspace=indent,eol,start " Make backspace behave normally.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Search
@@ -188,7 +184,7 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=**.class                         " Cursed Java class files
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and fonts
+" => Colors, fonts, encoding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                 " Enable syntax highlighting
 set guifont=Sauce\ Code\ Powerline:h14
@@ -197,20 +193,34 @@ try
     colorscheme codeschool
 catch
 endtry
-set background=dark
+set background=dark           " Use dark backgrounds
 
 if has("gui_running")
   set guioptions-=T
-
+  set t_Co=256
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Encoding and lines endings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf-8            " Use utf8 encoding and en_US
+set ffs=unix,dos,mac          " Auto-detect line endings, with
+                              " UNIX line ending preference
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nobackup                  " Don't use backup files
+set nowb                      " Even when overwritin a file
+set noswapfile                " Don't use swapfiles for buffers
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set expandtab                 " Expand tabs to spaces
+set smarttab                  " Insert tabs on the start of 
+                              " a line according to
+                              " shiftwidth, not tabstop
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
@@ -252,10 +262,7 @@ endif
 set tabstop=2     " a tab is four spaces
 set shiftwidth=2  " number of spaces to use for autoindenting
 set softtabstop=2
-set expandtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set smarttab      " insert tabs on the start of a line according to
-                  "    shiftwidth, not tabstop
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 
@@ -539,8 +546,8 @@ endfunction
 function! NavigationModeReadSet()
   let g:navigation_mode = "read"
   noremap h b
-  noremap j 20gj
-  noremap k 20gk 
+  noremap j <C-d> 
+  noremap k <C-u>
   noremap l w 
   echo "Reading navigation mode."
 endfunction
