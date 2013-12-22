@@ -6,6 +6,7 @@
 "
 " @see http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " @see http://amix.dk/vim/vimrc.html
+" @see http://statico.github.io/vim.html
 "
 " Sections:
 " * Plugins loading
@@ -126,6 +127,8 @@ set encoding=utf-8
 set nocompatible               " be iMproved
 set noswapfile
 
+set autoread
+set showcmd
 
 " Configurations
 """"""""""""""""
@@ -460,13 +463,24 @@ no # n
 no ! N
 let NERDTreeMapOpenInTab='p'
 
+noremap <Leader>t :VimTodoAddElement<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Quick add a suggestion for Vim configuration improvement
+command! VimTodoAddElement call VimTodoAddElement()
+function! VimTodoAddElement()
+  let l:todo_entry = input("Add .vimrc Todo: ")
+  execute "silent !echo '\" * '" . l:todo_entry . " >> $MYVIMRC"
+  redraw!
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " * add a "Search and replace" keyboard mapping
-" * find better keymapping for <C-j> and <C-k> to not have 
-" use Ctrl so much - it's a little tiring
-" * add a functionality of quickly adding TODO entries to
-" this list; so that I can effortlessly note down and save
-" improvements I wanto to make to my .vimrc
+" * find better keymapping for <C-j> and <C-k> to not have use Ctrl so much - it's a little tiring
+" * add a functionality of quickly adding TODO entries to this list; so that I can effortlessly note down and save improvements I wanto to make to my .vimrc
 " * figure out why fugitive commands do not seem to work
