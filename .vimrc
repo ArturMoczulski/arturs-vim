@@ -440,14 +440,7 @@ map <Backspace> :noh<CR>
 "no <C-e> <C-x>
 "map u ciw
 
-" Qwerty layout
-no <C-h> h
-no l w
-no h b
-no <C-l> l
 no z u
-no <C-j> <C-d>
-no <C-k> <C-u>
 
 " Text manipulation
 no ; $a;<Esc>
@@ -464,6 +457,7 @@ no ! N
 let NERDTreeMapOpenInTab='p'
 
 noremap <Leader>t :VimTodoAddElement<CR>
+noremap \ :NavigationModeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -476,6 +470,44 @@ function! VimTodoAddElement()
   execute "silent !echo '\" * '" . l:todo_entry . " >> $MYVIMRC"
   redraw!
 endfunction
+
+" Introducing read and write navigation mode:
+" * read: hjkl - move one character / line at a time
+" * write: hjkl - move by words and half pages
+command! NavigationModeToggle call NavigationModeToggle()
+function! NavigationModeToggle()
+  if !exists('g:navigation_mode')
+    let g:navigation_mode = "read"
+  endif
+
+  if g:navigation_mode == "read" 
+    call NavigationModeWriteSet()
+  else
+    call NavigationModeReadSet()
+  endif
+endfunction
+
+function! NavigationModeReadSet()
+  let g:navigation_mode = "read"
+  noremap h b
+  noremap j 10gj
+  noremap k 10gk 
+  noremap l w 
+  echo "Reading navigation mode."
+endfunction
+
+function! NavigationModeWriteSet()
+  let g:navigation_mode = "write"
+  noremap h b
+  noremap j gj
+  noremap k gk
+  noremap l w
+  noremap <C-h> h
+  noremap <C-l> l
+  echo "Writing navigation mode."
+endfunction
+
+call NavigationModeReadSet()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
