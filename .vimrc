@@ -127,7 +127,8 @@ set autoread
 
 set clipboard=unnamed         " Share system clipboard.
 set ffs=unix,dos,mac          " Default file types
-set history=1000              " Remember more commands and search history
+set history=1000              " Remember more commands and 
+                              " search history
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
