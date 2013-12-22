@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " .vimrc
 "
@@ -121,11 +121,19 @@ Bundle 'https://github.com/dandorman/vim-colors.git'
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype off                   " required!
+filetype off                  " required! how is this required?
 set encoding=utf-8
-set nocompatible               " be iMproved
+set nocompatible              " Be iMproved
 set noswapfile
 set autoread
+
+set clipboard=unnamed         " Share system clipboard.
+set backspace=indent,eol,start " Make backspace behave normally.
+set directory=/tmp//          " Swap files
+set backupskip=/tmp/*,/private/tmp/*
+set ffs=unix,dos,mac          " Default file types
+set history=1000              " Remember more commands and search history
+set undolevels=1000           " Use many muchos levels of undo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -136,6 +144,25 @@ set showcmd                   " Show the command being typed
 set number                    " Always show line numbers
 set hidden                    " Allow un-saved buffers in 
                               " background
+set nowrap                    " Don't wrap lines
+set showmatch                 " Set show matching parenthesis
+set title                     " Change the terminal's title
+set visualbell                " Don't beep
+set noerrorbells              " Don't beep
+set t_vb=                     " Turn off visual bell
+set gdefault                  " Default global search
+set relativenumber            " Make lines numbers more useful
+let g:NERDTreeWinPos = "right" " Put NERDTree on the side
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ignorecase                " Ignore case when searching
+set smartcase                 " Ignore case if search pattern 
+                              " is all lowercase, case-sensitive 
+                              " otherwise
+set hlsearch                  " Highlight search terms
+set incsearch                 " Show search matches as you type
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> File saving behavior 
@@ -160,33 +187,58 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=**.class                         " Cursed Java class files
 
-" Resize splits when the window is resized
-au VimResized * exe "normal! \<c-w>="
-
-" Basic
-syntax enable
-set clipboard=unnamed " Share system clipboard.
-set backspace=indent,eol,start " Make backspace behave normally.
-set directory=/tmp// " swap files
-set backupskip=/tmp/*,/private/tmp/*
-set ffs=unix,dos,mac "Default file types
-set nowrap        " don't wrap lines
-set showmatch     " set show matching parenthesis
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "  case-sensitive otherwise
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set title                " change the terminal's title
-set visualbell           " don't beep
-set noerrorbells         " don't beep
-set t_vb= 
-set gdefault
-set relativenumber
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and fonts
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable                 " Enable syntax highlighting
 set guifont=Sauce\ Code\ Powerline:h14
-let g:Powerline_sybmols = 'fancy'
+
+try
+    colorscheme codeschool
+catch
+endtry
+set background=dark
+
+if has("gui_running")
+  set guioptions-=T
+
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files and backups
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs and buffers
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vimgrep searching and cope displaying
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -364,14 +416,6 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " Testing
 let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
-
-" Look&feel layout {
-  if has("gui_running")
-    colorscheme codeschool
-    " set guifont=Monospace\ 10
-    let g:NERDTreeWinPos = "right"
-  endif
-" }
 
 " Solarized layout {
   "if !has("gui_running")
