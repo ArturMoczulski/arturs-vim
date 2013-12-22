@@ -122,20 +122,32 @@ Bundle 'https://github.com/dandorman/vim-colors.git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype off                   " required!
-
 set encoding=utf-8
 set nocompatible               " be iMproved
 set noswapfile
-
 set autoread
-set showcmd
 
-" Configurations
-""""""""""""""""
-" set background=dark
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set so=3                      " Set lines to the cursor when 
+                              " moving lines
+set showcmd                   " Show the command being typed
+set number                    " Always show line numbers
+set hidden                    " Allow un-saved buffers in 
+                              " background
 
-" Wildmenu completion
-"""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> File saving behavior 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autowriteall              " Auto-save files when switching 
+                              " buffers or leaving vim.
+au FocusLost * silent! :wa
+au TabLeave * silent! :wa
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Wildmenu completion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu
 set wildmode=list:longest
 set wildignore+=.hg,.git,.svn                    " Version control
@@ -146,20 +158,13 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
-set wildignore+=**.class                          " Cursed Java class files
-
-" Save when losing focus
-set autowriteall " Auto-save files when switching buffers or leaving vim.
-au FocusLost * silent! :wa
-au TabLeave * silent! :wa
+set wildignore+=**.class                         " Cursed Java class files
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
 " Basic
 syntax enable
-set number        " always show line numbers
-set hidden        " Allow un-saved buffers in background
 set clipboard=unnamed " Share system clipboard.
 set backspace=indent,eol,start " Make backspace behave normally.
 set directory=/tmp// " swap files
@@ -422,7 +427,7 @@ map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
-map <F9> :vs $MYVIMRC<CR>
+map <F9> :vs ~/.vim/.vimrc<CR>
 map <C-a> :w<CR>
 map <Backspace> :noh<CR>
 
@@ -490,8 +495,8 @@ endfunction
 function! NavigationModeReadSet()
   let g:navigation_mode = "read"
   noremap h b
-  noremap j 10gj
-  noremap k 10gk 
+  noremap j 20gj
+  noremap k 20gk 
   noremap l w 
   echo "Reading navigation mode."
 endfunction
@@ -513,8 +518,5 @@ call NavigationModeReadSet()
 " => Todo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " * add a "Search and replace" keyboard mapping
-" * find better keymapping for <C-j> and <C-k> to not have use Ctrl so much - it's a little tiring
-" * add a functionality of quickly adding TODO entries to this list; so that I can effortlessly note down and save improvements I wanto to make to my .vimrc
-" * figure out why fugitive commands do not seem to work
 " * get rid of all the startup error messages
 " * figure out why F12 does not work on Mac OS X
