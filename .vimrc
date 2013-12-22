@@ -484,3 +484,5 @@ endfunction
 " * find better keymapping for <C-j> and <C-k> to not have use Ctrl so much - it's a little tiring
 " * add a functionality of quickly adding TODO entries to this list; so that I can effortlessly note down and save improvements I wanto to make to my .vimrc
 " * figure out why fugitive commands do not seem to work
+" * get rid of all the startup error messages
+" * figure out why F12 does not work on Mac OS X
