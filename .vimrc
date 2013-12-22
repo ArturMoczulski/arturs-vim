@@ -1,35 +1,51 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" .vimrc
+"
 " @author Artur Moczulski <artur.moczulski@gmail.com>
 "
 " @see http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+" @see http://amix.dk/vim/vimrc.html
 "
+" Sections:
+" * Plugins loading
+" * General
+" * VIM user interface
+" * Colors and Fonts
+" * Files and backups
+" * Text, tab and indent related
+" * Visual mode related
+" * Moving around, tabs and buffers
+" * Status line
+" * Editing mappings
+" * vimgrep searching and cope displaying
+" * Spell checking
+" * Misc
+" * Helper functions
+" * Todo
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set encoding=utf-8
-set nocompatible               " be iMproved
-filetype off                   " required!
-set noswapfile
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins loading
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Plugin management
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-" let Vundle manage Vundle
+" let Vundle manage itself
 Bundle 'gmarik/vundle'
+filetype plugin indent on     " required!
 
-" Vundle help
-""""""""""""""
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-
-
-" VCS
-Bundle 'tpope/vim-fugitive'
-
-" System
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> System
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bundle 'mattn/webapi-vim'
 " Bundle 'vim-scripts/Gist.vim'
 " Bundle 'https://github.com/vim-scripts/taglist.vim'
- Bundle 'mileszs/ack.vim'
+Bundle 'mileszs/ack.vim'
 " Bundle 'scrooloose/nerdcommenter'
 " Bundle 'tpope/vim-surround'
 " Bundle 'scrooloose/syntastic'
@@ -44,7 +60,14 @@ Bundle 'ervandew/supertab'
 " Bundle 'https://github.com/wesleyche/Trinity.git'
 " Bundle 'git://github.com/tpope/vim-unimpaired.git'
 
-" Syntaxes and such.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> VCS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tpope/vim-fugitive'
+ 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Syntaxes and such.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bundle 'tpope/vim-cucumber'
 Bundle 'leshill/vim-json'
 " Bundle 'tpope/vim-liquid'
@@ -60,23 +83,30 @@ Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
 
-" Debugging
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Debugging
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'joonty/vdebug.git' 
 
-" Python bundles
-" Bundle 'nvie/vim-flake8'
-" Bundle 'fs111/pydoc.vim'
-" Bundle 'vim-scripts/python_match.vim'
-" Bundle 'jmcantrell/vim-virtualenv'
-
-" Ruby specific
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Ruby specific
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
-" PHP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> PHP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bundle 'vim-scripts/PHPUnit-QF'
 
-" Fun, but not useful
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Database
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bundle "https://github.com/vim-scripts/dbext.vim.git"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Fun, but not useful
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/chance-of-storm'
 " Bundle 'skammer/vim-css-color'
@@ -86,14 +116,20 @@ Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
 Bundle 'https://github.com/dandorman/vim-colors.git'
 
-" Database
-" Bundle "https://github.com/vim-scripts/dbext.vim.git"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype plugin indent on     " required!
+filetype off                   " required!
+
+set encoding=utf-8
+set nocompatible               " be iMproved
+set noswapfile
+
 
 " Configurations
 """"""""""""""""
-set background=dark
+" set background=dark
 
 " Wildmenu completion
 """""""""""""""""""""
@@ -423,3 +459,14 @@ no <C-Space> a
 no # n
 no ! N
 let NERDTreeMapOpenInTab='p'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Todo
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" * add a "Search and replace" keyboard mapping
+" * find better keymapping for <C-j> and <C-k> to not have 
+" use Ctrl so much - it's a little tiring
+" * add a functionality of quickly adding TODO entries to
+" this list; so that I can effortlessly note down and save
+" improvements I wanto to make to my .vimrc
+" * figure out why fugitive commands do not seem to work
