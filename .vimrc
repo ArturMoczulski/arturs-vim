@@ -510,7 +510,4 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" * add a "Search and replace" keyboard mapping
-" * get rid of all the startup error messages
-" * figure out why F12 does not work on Mac OS X
 " * figure out how to use taglist plugin
