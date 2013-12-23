@@ -112,12 +112,10 @@ Bundle 'tpope/vim-endwise'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Fun, but not useful
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/chance-of-storm'
 " Bundle 'skammer/vim-css-color'
 " Bundle 'ehamberg/vim-cute-python'
 Bundle 'Lokaltog/powerline'
-Bundle 'chriskempson/base16-vim'
+" Show crosshair when cursor is on a parentheses
 Bundle 'chreekat/vim-paren-crosshairs'
 Bundle 'https://github.com/dandorman/vim-colors.git'
 
@@ -222,8 +220,7 @@ if has("gui_running")
 endif
 
 try
-    let g:codeschool_termcolors=256
-    colorscheme codeschool
+    colorscheme Tomorrow-Night
 catch
 endtry
 
