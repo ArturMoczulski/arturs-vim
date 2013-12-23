@@ -15,13 +15,14 @@
 " * Colors, fonts, encoding
 " * Files and backups
 " * Text, tab and indent related
-" * Visual mode related
 " * Moving around, tabs and buffers
 " * Status line
 " * Editing mappings
+" * Misc mappings
 " * vimgrep searching and cope displaying
 " * Spell checking
-" * Misc
+" * VCS
+" * Filetype specific
 " * Helper functions
 " * Todo
 "
@@ -43,11 +44,10 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> System
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle 'mattn/webapi-vim'
-" Bundle 'vim-scripts/Gist.vim'
+Bundle 'mattn/webapi-vim'     " WebApi library for Vim
 " Bundle 'https://github.com/vim-scripts/taglist.vim'
 Bundle 'mileszs/ack.vim'
-" Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
 " Bundle 'tpope/vim-surround'
 " Bundle 'scrooloose/syntastic'
 " Bundle 'Raimondi/delimitMate'
@@ -87,7 +87,7 @@ Bundle 'atourino/jinja.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Debugging
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'joonty/vdebug.git' 
+Bundle 'joonty/vdebug.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Ruby specific
@@ -127,18 +127,22 @@ set autoread
 
 set clipboard=unnamed         " Share system clipboard.
 set ffs=unix,dos,mac          " Default file types
-set history=1000              " Remember more commands and 
+set history=1000              " Remember more commands and
                               " search history
+
+" Fix those pesky situations where you edit & need sudo to save
+cmap w!! w !sudo tee % >/dev/null
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set undolevels=1000           " Use many muchos levels of undo
-set so=3                      " Set lines to the cursor when 
+set so=3                      " Set lines to the cursor when
                               " moving lines
 set showcmd                   " Show the command being typed
 set number                    " Always show line numbers
-set hidden                    " Allow un-saved buffers in 
+set hidden                    " Allow un-saved buffers in
                               " background
 set showmatch                 " Set show matching parenthesis
 set title                     " Change the terminal's title
@@ -149,21 +153,40 @@ set gdefault                  " Default global search
 set relativenumber            " Make lines numbers more useful
 let g:NERDTreeWinPos = "right" " Put NERDTree on the side
 set backspace=indent,eol,start " Make backspace behave normally.
+set spell
+set colorcolumn=100
+set laststatus=2              " Always show status line
+
+" Powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
+" Change leader
+let mapleader = ","
+let g:mapleader = ","
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Keymappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F2> :NERDTreeToggle<CR>
+map <F3> :Errors<CR>
+map <F4> :TagbarToggle<CR>
+" Handy save
+map <C-a> :w<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Search
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ignorecase                " Ignore case when searching
-set smartcase                 " Ignore case if search pattern 
-                              " is all lowercase, case-sensitive 
+set smartcase                 " Ignore case if search pattern
+                              " is all lowercase, case-sensitive
                               " otherwise
 set hlsearch                  " Highlight search terms
 set incsearch                 " Show search matches as you type
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ==> File saving behavior 
+" ==> File saving behavior
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autowriteall              " Auto-save files when switching 
+set autowriteall              " Auto-save files when switching
                               " buffers or leaving vim.
 au FocusLost * silent! :wa
 au TabLeave * silent! :wa
@@ -200,6 +223,9 @@ if has("gui_running")
   set t_Co=256
 endif
 
+" Highlight VCS conflicts
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Encoding and lines endings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,35 +237,39 @@ set ffs=unix,dos,mac          " Auto-detect line endings, with
 " => Files and backups
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nobackup                  " Don't use backup files
-set nowb                      " Even when overwritin a file
+set nowb                      " Even when overwriting a file
 set noswapfile                " Don't use swapfiles for buffers
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab                 " Expand tabs to spaces
-set smarttab                  " Insert tabs on the start of 
+set smarttab                  " Insert tabs on the start of
                               " a line according to
                               " shiftwidth, not tabstop
 set tabstop=2                 " Tab width in spaces
-set shiftwidth=2              " Number of spaces to use for 
+set shiftwidth=2              " Number of spaces to use for
                               " autoindenting
 set softtabstop=2
-set shiftround                " Use multiple of shiftwidth 
+set shiftround                " Use multiple of shiftwidth
                               " when indenting with '<' and '>'
 set autoindent                " Preserve indentation from the
                               " last line
-set copyindent                " Copy the previous indentation 
+set copyindent                " Copy the previous indentation
                               " on autoindenting using the exact
                               " same characters
 set lbr                       " Visually break lines on 500 chars
 set tw=500
-set wrap                      " Wrap lines at the edge og the
+set wrap                      " Wrap lines at the edge of the
                               " screen
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                              "
+" Make sure we highlight extra whitespace in the most annoying way
+" possible.
+highlight ExtraWhitespace ctermbg=Yellow guibg=Yellow
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -247,6 +277,8 @@ set wrap                      " Wrap lines at the edge og the
 " Search
 nnoremap / /\v
 vnoremap / /\v
+vnoremap <silent> * :call VisualSelection('f','')<CR>
+vnoremap <silent> # :call VisualSelection('b','')<CR>
 map <Backspace> :noh<CR>
 
 " Easy pane navigation
@@ -267,7 +299,7 @@ map <A-]> <C-w><
 noremap m :NavigationModeToggle<CR>
 
 " @see functions NavigationModeReadSet and
-" NavigationModeWriteSet for navigation kets setup
+" NavigationModeWriteSet for navigation keys setup
 
 set viminfo^=%                " Remember open buffers on close
 " Return to last edit position when opening files (You want this!)
@@ -278,17 +310,12 @@ autocmd BufReadPost *
      \ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2              " Alwas show status line
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use 0 to jump to the beginning of the line
 map 0 ^
 
-" Select keymapping more convenient
+" Select keymaping more convenient
 no a v
 " Select full line
 no <S-a> <S-v>
@@ -300,6 +327,21 @@ no ; $a;<Esc>
 inoremap hh <Esc>
 no <Space> i
 no <C-Space> a
+
+" Disable annoying help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add a todo item to your Vim configuration
+noremap <Leader>t :VimTodoAddElement<CR>
+
+" Editing Vim configuration
+map <F9> :vs ~/.vim/.vimrc<CR>
+map <F12> :so $MYVIMRC<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -322,122 +364,15 @@ map <leader>p :cp<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle spell-checking
+map <leader>ss :setlocal spell!<cr>
+" Traverse spell-checking errors
+map <leader>sn ]s
+map <leader>sp [s
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
+" => VCS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" General Code Folding
-""""""""""""""""""""""
-set foldmethod=indent
-set foldlevel=99
-
-" Highlight VCS conflict markers
-""""""""""""""""""""""""""""""""
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-
-" General auto-commands
-"""""""""""""""""""""""
-autocmd FileType * setlocal colorcolumn=0
-" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-" Get rid of trailing whitespace highlighting in mutt.
-" autocmd FileType mail highlight clear ExtraWhitespace
-autocmd FileType mail setlocal listchars=
-
-" Reformat XML files
-au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
-
-" Crontab auto-commands
-"""""""""""""""""""""""
-autocmd FileType crontab setlocal backupcopy=yes
-
-" Toggle spellcheck in normal mode
-" :map <F5> :setlocal spell! spelllang=en_us<CR>
-
-" Ruby Configurations
-"""""""""""""""""""""
-autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2
-
-" PHP Configurations
-""""""""""""""""""""
-autocmd FileType php setlocal colorcolumn=100
-
-" HTML configurations
-"""""""""""""""""""""
-autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
-
-" Python configurations
-"""""""""""""""""""""""
-autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4
-autocmd FileType python setlocal colorcolumn=80
-autocmd FileType python map <buffer> <F4> :call Flake8()<CR>
-autocmd FileType python autocmd BufWritePre * :%s/\s\+$//e
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-" Coffeescript configurations
-"""""""""""""""""""""""""""""
-au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent
-au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
-
-" Javascript configurations
-"""""""""""""""""""""""""""
-au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
-let g:syntastic_javascript_checkers = ['jslint']
-
-" Puppet configurations
-"""""""""""""""""""""""
-au FileType puppet setlocal noexpandtab
-
-" Get jinja filetype selection working correctly for *.jinja.html files.
-au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
-
-" Make sure we hilight extra whitespace in the most annoying way possible.
-" highlight ExtraWhitespace ctermbg=none guibg=none
-" match ExtraWhitespace /\s\+$/
-" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-
-" XDebug syntax
-au BufNewFile,BufRead *.xt  setf xt
-
-" PHP Configuration
-au BufNewFile,BufRead *.game set filetype=php
-au BufNewFile,BufRead *.fig set filetype=php
-
-" Custom mappings
-""""""""""""""""""
-
-" Genral
-noremap <silent> <F4> :QFix<CR>
-
-
-" Change leader
-let mapleader = ","
-let g:mapleader = ","
-
-" Get rid of search hilighting with ,/
-nnoremap <silent> <leader>/ :nohlsearch<CR>
-
-" Fix those pesky situations where you edit & need sudo to save
-cmap w!! w !sudo tee % >/dev/null
-
-
-" Plugin configurations
-"""""""""""""""""""""""
-
-" Pyflakes
-"autocmd BufWritePost *.py call Flake8()
-let g:flake8_ignore="E128,E501"
-let g:syntastic_python_checker_args='--ignore=E501,E128'
-
-" Gist
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 2
-let g:gist_show_privates = 1
-let g:gist_post_private = 1
 
 " TaskList
 "map <leader>l <Plug>TaskList
@@ -473,46 +408,18 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 0
 let g:syntastic_puppet_lint_disable = 0
 
-" Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-" Testing
-let g:phpunit_args = "--configuration /var/www/html/unit-test/TalentCircles/phpunit.xml"
-
-" Solarized layout {
-  "if !has("gui_running")
-      "colorscheme solarized
-      "let g:solarized_termtrans=1
-  "else
-      "colorscheme solarized
-      "let g:solarized_termtrans=1
-  "endif
-" }
-
-" TalentCircles
-"""""""""""""""""""""""""""""""""""""""""""""
-cd ~/Projects/talentcircles/html
-
 " DBExt
 let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=alumwire'
 
-" Key mappings 
-"""""""""""""""""""""""""""""""""""""""""""""
-
-" Disable annoying help
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-
-" Others
-map <F2> :NERDTreeToggle<CR>
-map <F3> :Errors<CR>
-map <F4> :TagbarToggle<CR>
-map <F12> :so $MYVIMRC<CR>
-map <F9> :vs ~/.vim/.vimrc<CR>
-map <C-a> :w<CR>
-
-noremap <Leader>t :VimTodoAddElement<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Filetype specific
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HTML
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+" Javascript
+let g:syntastic_javascript_checkers = ['jslint']
+" Get jinja filetype selection working correctly for *.jinja.html files.
+au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -535,7 +442,7 @@ function! NavigationModeToggle()
     let g:navigation_mode = "read"
   endif
 
-  if g:navigation_mode == "read" 
+  if g:navigation_mode == "read"
     call NavigationModeWriteSet()
   else
     call NavigationModeReadSet()
