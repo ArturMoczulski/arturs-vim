@@ -140,7 +140,6 @@ set showcmd                   " Show the command being typed
 set number                    " Always show line numbers
 set hidden                    " Allow un-saved buffers in 
                               " background
-set nowrap                    " Don't wrap lines
 set showmatch                 " Set show matching parenthesis
 set title                     " Change the terminal's title
 set visualbell                " Don't beep
@@ -222,10 +221,30 @@ set expandtab                 " Expand tabs to spaces
 set smarttab                  " Insert tabs on the start of 
                               " a line according to
                               " shiftwidth, not tabstop
+set tabstop=2                 " Tab width in spaces
+set shiftwidth=2              " Number of spaces to use for 
+                              " autoindenting
+set softtabstop=2
+set shiftround                " Use multiple of shiftwidth 
+                              " when indenting with '<' and '>'
+set autoindent                " Preserve indentation from the
+                              " last line
+set copyindent                " Copy the previous indentation 
+                              " on autoindenting using the exact
+                              " same characters
+set lbr                       " Visually break lines on 500 chars
+set tw=500
+set wrap                      " Wrap lines at the edge og the
+                              " screen
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *: behave the same in visual mode as in normal mode
+vnoremap <silent> * :call VisualSelection('f', '')<CR>
+
+" #: behave the same in visual mode as in normal mode
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -250,22 +269,6 @@ set smarttab                  " Insert tabs on the start of
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Remove the toolbar if we're running under a GUI (e.g. MacVIM).
-if has("gui_running")
-  set guioptions=-t
-endif
-
-" Special characters for hilighting non-priting spaces/tabs/etc.
-" set list listchars=tab:»\ ,trail:·
-
-" Default Tabs & spaces
-set tabstop=2     " a tab is four spaces
-set shiftwidth=2  " number of spaces to use for autoindenting
-set softtabstop=2
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set autoindent    " always set autoindenting on
-set copyindent    " copy the previous indentation on autoindenting
 
 " General Code Folding
 """"""""""""""""""""""
@@ -565,6 +568,27 @@ function! NavigationModeWriteSet()
 endfunction
 
 call NavigationModeReadSet()
+
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
