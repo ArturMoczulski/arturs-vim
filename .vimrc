@@ -44,13 +44,17 @@ filetype plugin indent on     " required!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> System
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'mattn/webapi-vim'     " WebApi library for Vim
-" Bundle 'https://github.com/vim-scripts/taglist.vim'
-Bundle 'mileszs/ack.vim'
+" WebApi library for Vim
+Bundle 'mattn/webapi-vim'
+" Users ctags to provide source exploration
+Bundle 'https://github.com/vim-scripts/taglist.vim'
+" Easy source code commenting
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'tpope/vim-surround'
-" Bundle 'scrooloose/syntastic'
+" Syntax checker with error checking
+Bundle 'scrooloose/syntastic'
 " Bundle 'Raimondi/delimitMate'
+" Colorize matching parentheses
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
@@ -212,19 +216,25 @@ set wildignore+=**.class                         " Cursed Java class files
 syntax enable                 " Enable syntax highlighting
 set guifont=Sauce\ Code\ Powerline:h14
 
-try
-    colorscheme codeschool
-catch
-endtry
-set background=dark           " Use dark backgrounds
-
 if has("gui_running")
   set guioptions-=T
   set t_Co=256
 endif
 
+try
+    let g:codeschool_termcolors=256
+    colorscheme codeschool
+catch
+endtry
+
 " Highlight VCS conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Enable matching parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Encoding and lines endings
@@ -506,3 +516,4 @@ endfunction
 " * add a "Search and replace" keyboard mapping
 " * get rid of all the startup error messages
 " * figure out why F12 does not work on Mac OS X
+" * figure out how to use taglist plugin
