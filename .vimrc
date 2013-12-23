@@ -514,7 +514,7 @@ no ! N
 let NERDTreeMapOpenInTab='p'
 
 noremap <Leader>t :VimTodoAddElement<CR>
-noremap \ :NavigationModeToggle<CR>
+noremap m :NavigationModeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
