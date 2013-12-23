@@ -240,27 +240,84 @@ set wrap                      " Wrap lines at the edge og the
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" *: behave the same in visual mode as in normal mode
-vnoremap <silent> * :call VisualSelection('f', '')<CR>
-
-" #: behave the same in visual mode as in normal mode
-vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search
+nnoremap / /\v
+vnoremap / /\v
+map <Backspace> :noh<CR>
+
+" Easy pane navigation
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
+" Open / close
+map <tab> <C-W>w
+map <C-x> :q!<CR>
+" Resizing
+map - <C-w>-
+map = <C-w>+
+map <A-[> <C-w>>
+map <A-]> <C-w><
+
+" Text navigation mode
+noremap m :NavigationModeToggle<CR>
+
+" @see functions NavigationModeReadSet and
+" NavigationModeWriteSet for navigation kets setup
+
+set viminfo^=%                " Remember open buffers on close
+" Return to last edit position when opening files (You want this!)
+" @author https://github.com/amix/vimrc
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2              " Alwas show status line
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use 0 to jump to the beginning of the line
+map 0 ^
+
+" Select keymapping more convenient
+no a v
+" Select full line
+no <S-a> <S-v>
+
+" Insert ";" at the of the line
+no ; $a;<Esc>
+
+" Switch modes
+inoremap hh <Esc>
+no <Space> i
+no <C-Space> a
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimgrep (handy version)
+map <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
+" Vimgrep for selection in all files
+vnoremap <silent> gv :call VisualSelection('gv','')<CR><CR>
+
+" Search and replace selection
+vnoremap <silent> <leader>r :call VisualSelection('replace','')<CR>
+
+" Open up cope window (showing your vimgrep results)
+map <leader>gl :botright cope<cr>
+
+" Traverse search results
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -278,11 +335,6 @@ set foldlevel=99
 " Highlight VCS conflict markers
 """"""""""""""""""""""""""""""""
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" I CAN HAZ NORMAL REGEXES?
-"""""""""""""""""""""""""""
-nnoremap / /\v
-vnoremap / /\v
 
 
 " General auto-commands
@@ -417,7 +469,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-set laststatus=2
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 0
 let g:syntastic_puppet_lint_disable = 0
@@ -448,76 +499,20 @@ let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:dbname=alumwire'
 " Key mappings 
 """""""""""""""""""""""""""""""""""""""""""""
 
-" I don't even fully understand these 2: 'It also makes j and k work the way you expect instead of working in some archaic “movement by file line instead of screen line” fashion.'
-nnoremap j gj
-nnoremap k gk
-
 " Disable annoying help
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" Easy window navigation
-noremap <A-h> <C-w>h
-noremap <A-j> <C-w>j
-noremap <A-k> <C-w>k
-noremap <A-l> <C-w>l
-"noremap <A-h> <C-w>h
-"noremap <A-t> <C-w>j
-"noremap <A-n> <C-w>k
-"noremap <A-s> <C-w>l
-
-" Copy & pasting
-"   select pasted text
-nnoremap <leader>v V`]
-
 " Others
-map <tab> <C-W>w
-map <C-x> :q!<CR>
-map - <C-w>-
-map = <C-w>+
-map <A-[> <C-w>>
-map <A-]> <C-w><
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
 map <F4> :TagbarToggle<CR>
 map <F12> :so $MYVIMRC<CR>
 map <F9> :vs ~/.vim/.vimrc<CR>
 map <C-a> :w<CR>
-map <Backspace> :noh<CR>
-
-" Dvorak layout
-"no <C-h> h
-"no t j
-"no n k
-"no <C-s> l
-"no <C-t> <C-d>
-"no <C-n> <C-u>
-"no s w
-"no h b
-"no ' u
-"no e x
-"no <C-e> <C-x>
-"map u ciw
-
-no z u
-
-" Text manipulation
-no ; $a;<Esc>
-no a v
-no <S-a> <S-v>
-
-" Switch modes
-inoremap hh <Esc>
-no <Space> i
-no <C-Space> a
-
-no # n
-no ! N
-let NERDTreeMapOpenInTab='p'
 
 noremap <Leader>t :VimTodoAddElement<CR>
-noremap m :NavigationModeToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -569,6 +564,14 @@ endfunction
 
 call NavigationModeReadSet()
 
+" @author https://github.com/amix/vimrc
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction 
+
+" @author https://github.com/amix/vimrc
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
     execute "normal! vgvy"
@@ -579,7 +582,7 @@ function! VisualSelection(direction, extra_filter) range
     if a:direction == 'b'
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.*' . a:extra_filter)
     elseif a:direction == 'replace'
         call CmdLine("%s" . '/'. l:pattern . '/')
     elseif a:direction == 'f'
