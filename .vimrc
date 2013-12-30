@@ -304,6 +304,7 @@ map <A-]> <C-w><
 
 " Text navigation mode
 noremap m :NavigationModeToggle<CR>
+noremap \ :NavigationModeToggle<CR>
 
 " @see functions NavigationModeReadSet and
 " NavigationModeWriteSet for navigation keys setup
@@ -385,7 +386,7 @@ map <leader>sp [s
 "map <leader>l <Plug>TaskList
 
 " TagBar
-nnoremap <silent> <F2> :TagbarToggle<CR>
+"nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/bin/ctags'
 let g:tagbar_autoshowtag = 1
 let g:tagbar_autofocus = 1
