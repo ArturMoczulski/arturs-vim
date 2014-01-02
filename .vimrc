@@ -212,10 +212,10 @@ set wildignore+=**.class                         " Cursed Java class files
 " => Colors, fonts, encoding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                 " Enable syntax highlighting
-set guifont=Sauce\ Code\ Powerline:h14
+" set guifont=Sauce\ Code\ Powerline
 
 if has("gui_running")
-  set guioptions-=T
+  set guioptions=
   set t_Co=256
 endif
 
