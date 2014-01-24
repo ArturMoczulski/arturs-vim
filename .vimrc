@@ -153,10 +153,11 @@ set noerrorbells              " Don't beep
 set t_vb=                     " Turn off visual bell
 set gdefault                  " Default global search
 set relativenumber            " Make lines numbers more useful
+autocmd BufReadPost * set relativenumber
 let g:NERDTreeWinPos = "right" " Put NERDTree on the side
 set backspace=indent,eol,start " Make backspace behave normally.
-set spell
 set colorcolumn=100
+set nospell
 set laststatus=2              " Always show status line
 
 " Powerline
@@ -171,9 +172,10 @@ let g:mapleader = ","
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
-map <F4> :TagbarToggle<CR>
+"map <F4> :TagbarToggle<CR>
 " Handy save
 map <C-a> :w<CR>
+map <F4> :CtrlPMixed<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Search
@@ -267,7 +269,7 @@ set copyindent                " Copy the previous indentation
                               " same characters
 set lbr                       " Visually break lines on 500 chars
 set tw=500
-set wrap                      " Wrap lines at the edge of the
+"set wrap                      " Wrap lines at the edge of the
                               " screen
                               "
 " Make sure we highlight extra whitespace in the most annoying way
