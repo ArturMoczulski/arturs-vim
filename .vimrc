@@ -87,6 +87,16 @@ Bundle 'groenewege/vim-less'
 " Bundle 'empanda/vim-varnish'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
+Bundle 'https://github.com/rstacruz/sparkup.git'
+Bundle 'git://github.com/tpope/vim-rails.git'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==> Code generation
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Debugging
@@ -102,12 +112,12 @@ Bundle 'tpope/vim-endwise'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> PHP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle 'vim-scripts/PHPUnit-QF'
+Bundle 'vim-scripts/PHPUnit-QF'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Database
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle "https://github.com/vim-scripts/dbext.vim.git"
+Bundle "https://github.com/vim-scripts/dbext.vim.git"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Fun, but not useful
@@ -175,7 +185,6 @@ map <F3> :Errors<CR>
 "map <F4> :TagbarToggle<CR>
 " Handy save
 map <C-a> :w<CR>
-map <F4> :CtrlPMixed<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Search
@@ -343,6 +352,11 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Code generation
+imap <C-tab> <Plug>snipMateNextOrTrigger
+smap <C-tab> <Plug>snipMateNextOrTrigger
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -394,12 +408,15 @@ let g:tagbar_autoshowtag = 1
 let g:tagbar_autofocus = 1
 
 " crtl-p
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_map = '<F4>'
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
+let g:ctrlp_regexp = 1
+map <F4> :CtrlPMixed<CR>
 
 " SnipMate
-let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
+let g:snippets_dir = "~/.vim/bundle/vim-snippets"
+let g:snips_author = "Artur Moczulski"
 
 " Sparkup
 let g:sparkupExecuteMapping = '<c-y>'
@@ -509,6 +526,15 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => TalentCircles
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vdebug
+"let g:vdebug_options['path_maps'] = {"/var/www/html": "/mnt/vm/html"}
+"let g:vdebug_options['server'] = "192.168.1.116"
+" PHPUnit
+let g:phpunit_args = "--configuration unit-test/TalentCircles/phpunit.xml"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
