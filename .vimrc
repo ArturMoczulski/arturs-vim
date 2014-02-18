@@ -531,8 +531,8 @@ endfunction
 " => TalentCircles
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vdebug
-"let g:vdebug_options['path_maps'] = {"/var/www/html": "/mnt/vm/html"}
-"let g:vdebug_options['server'] = "192.168.1.116"
+" let g:vdebug_options['path_maps'] = {"/var/www/html": "/mnt/vm/html"}
+" let g:vdebug_options['server'] = "192.168.1.116"
 " PHPUnit
 let g:phpunit_args = "--configuration unit-test/TalentCircles/phpunit.xml"
 
