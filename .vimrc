@@ -280,7 +280,7 @@ set copyindent                " Copy the previous indentation
                               " same characters
 set lbr                       " Visually break lines on 500 chars
 set tw=500
-"set wrap                      " Wrap lines at the edge of the
+set nowrap                      " Don't wrap lines at the edge of the
                               " screen
                               "
 " Make sure we highlight extra whitespace in the most annoying way
@@ -498,7 +498,7 @@ function! NavigationModeWriteSet()
   echo "Writing navigation mode."
 endfunction
 
-call NavigationModeReadSet()
+call NavigationModeWriteSet()
 
 " @author https://github.com/amix/vimrc
 function! CmdLine(str)
