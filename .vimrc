@@ -108,6 +108,7 @@ Bundle 'joonty/vdebug.git'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-cucumber'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> PHP
@@ -182,6 +183,7 @@ let g:mapleader = ","
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <F3> :Errors<CR>
+map <F7> :Gstatus<CR>
 "map <F4> :TagbarToggle<CR>
 " Handy save
 map <C-a> :w<CR>
@@ -531,8 +533,8 @@ endfunction
 " => TalentCircles
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vdebug
-" let g:vdebug_options['path_maps'] = {"/var/www/html": "/mnt/vm/html"}
-" let g:vdebug_options['server'] = "192.168.1.116"
+"let g:vdebug_options['path_maps'] = {"/var/www/html": "/mnt/vm/html"}
+"let g:vdebug_options['server'] = "192.168.1.116"
 " PHPUnit
 let g:phpunit_args = "--configuration unit-test/TalentCircles/phpunit.xml"
 
