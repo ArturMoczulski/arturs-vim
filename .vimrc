@@ -1,5 +1,5 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " .vimrc
 "
 " @author Artur Moczulski <artur.moczulski@gmail.com>
@@ -35,100 +35,104 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Plugin management
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " let Vundle manage itself
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 filetype plugin indent on     " required!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> System
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plugin 'gmarik/Vundle.vim'
 " WebApi library for Vim
-Bundle 'mattn/webapi-vim'
+Plugin 'mattn/webapi-vim'
 " Users ctags to provide source exploration
-Bundle 'https://github.com/vim-scripts/taglist.vim'
+Plugin 'https://github.com/vim-scripts/taglist.vim'
 " Easy source code commenting
-Bundle 'scrooloose/nerdcommenter'
-" Bundle 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+" Plugin 'tpope/vim-surround'
 " Syntax checker with error checking
-Bundle 'scrooloose/syntastic'
-" Bundle 'Raimondi/delimitMate'
+Plugin 'scrooloose/syntastic'
+" Plugin 'Raimondi/delimitMate'
 " Colorize matching parentheses
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'sophacles/vim-bundle-sparkup'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-" Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'ervandew/supertab'
-" Bundle 'https://github.com/wesleyche/SrcExpl.git'
-" Bundle 'https://github.com/wesleyche/Trinity.git'
-" Bundle 'git://github.com/tpope/vim-unimpaired.git'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'sophacles/vim-bundle-sparkup'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'ervandew/supertab'
+" Plugin 'https://github.com/wesleyche/SrcExpl.git'
+" Plugin 'https://github.com/wesleyche/Trinity.git'
+" Plugin 'git://github.com/tpope/vim-unimpaired.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> VCS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Syntaxes and such.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle 'tpope/vim-cucumber'
-Bundle 'leshill/vim-json'
-" Bundle 'tpope/vim-liquid'
-" Bundle 'puppetlabs/puppet-syntax-vim'
-" Bundle 'tpope/vim-haml'
-" Bundle 'kchmck/vim-coffee-script'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'groenewege/vim-less'
-" Bundle 'othree/html5.vim'
-" Bundle 'mutewinter/nginx.vim'
-" Bundle 'msanders/cocoa.vim'
-" Bundle 'empanda/vim-varnish'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'atourino/jinja.vim'
-Bundle 'https://github.com/rstacruz/sparkup.git'
-Bundle 'git://github.com/tpope/vim-rails.git'
+" Plugin 'tpope/vim-cucumber'
+Plugin 'leshill/vim-json'
+" Plugin 'tpope/vim-liquid'
+" Plugin 'puppetlabs/puppet-syntax-vim'
+" Plugin 'tpope/vim-haml'
+" Plugin 'kchmck/vim-coffee-script'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'groenewege/vim-less'
+" Plugin 'othree/html5.vim'
+" Plugin 'mutewinter/nginx.vim'
+" Plugin 'msanders/cocoa.vim'
+" Plugin 'empanda/vim-varnish'
+Plugin 'itspriddle/vim-jquery'
+Plugin 'atourino/jinja.vim'
+Plugin 'https://github.com/rstacruz/sparkup.git'
+Plugin 'git://github.com/tpope/vim-rails.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Code generation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Debugging
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'joonty/vdebug.git'
+Plugin 'joonty/vdebug.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Ruby specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle "vim-ruby/vim-ruby"
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-cucumber'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-cucumber'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> PHP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'vim-scripts/PHPUnit-QF'
+Plugin 'vim-scripts/PHPUnit-QF'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Database
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle "https://github.com/vim-scripts/dbext.vim.git"
+Plugin 'https://github.com/vim-scripts/dbext.vim.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Fun, but not useful
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundle 'skammer/vim-css-color'
-" Bundle 'ehamberg/vim-cute-python'
-Bundle 'Lokaltog/powerline'
+" Plugin 'skammer/vim-css-color'
+" Plugin 'ehamberg/vim-cute-python'
+Plugin 'Lokaltog/powerline'
 " Show crosshair when cursor is on a parentheses
-Bundle 'chreekat/vim-paren-crosshairs'
-Bundle 'https://github.com/dandorman/vim-colors.git'
+Plugin 'chreekat/vim-paren-crosshairs'
+Plugin 'https://github.com/dandorman/vim-colors.git'
+Plugin 'flazz/vim-colorschemes'
+
+call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -225,26 +229,29 @@ set wildignore+=**.class                         " Cursed Java class files
 " => Colors, fonts, encoding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                 " Enable syntax highlighting
-" set guifont=Sauce\ Code\ Powerline
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+"set term=xterm-256color
+set termencoding=utf-8
 
 if has("gui_running")
-  set guioptions=
-  set t_Co=256
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Inconsolata\ for\ Powerline:h15
+   endif
 endif
-
-try
-    colorscheme Tomorrow-Night
-catch
-endtry
 
 " Highlight VCS conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Enable matching parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Encoding and lines endings
@@ -366,7 +373,7 @@ smap <C-tab> <Plug>snipMateNextOrTrigger
 noremap <Leader>t :VimTodoAddElement<CR>
 
 " Editing Vim configuration
-map <F9> :vs ~/.vim/.vimrc<CR>
+map <F9> :vs ~/.vimrc<CR>
 map <F12> :so $MYVIMRC<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -428,10 +435,10 @@ let g:sparkupNextMapping = '<c-k>'
 let g:jedi#goto_command = "<leader>g"
 
 " Double rainbow - What does it mean!?
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 
 let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 0
@@ -537,6 +544,8 @@ endfunction
 "let g:vdebug_options['server'] = "192.168.1.116"
 " PHPUnit
 let g:phpunit_args = "--configuration unit-test/TalentCircles/phpunit.xml"
+
+colorscheme Codeschool
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Todo
