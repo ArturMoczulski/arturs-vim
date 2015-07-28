@@ -59,11 +59,11 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
-" Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'https://git.wincent.com/command-t.git'
 Bundle 'ervandew/supertab'
 " Bundle 'https://github.com/wesleyche/SrcExpl.git'
 " Bundle 'https://github.com/wesleyche/Trinity.git'
-" Bundle 'git://github.com/tpope/vim-unimpaired.git'
+" Bundle 'https://github.com/tpope/vim-unimpaired.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> VCS
@@ -88,7 +88,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
 Bundle 'https://github.com/rstacruz/sparkup.git'
-Bundle 'git://github.com/tpope/vim-rails.git'
+Bundle 'https://github.com/tpope/vim-rails.git'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Code generation
