@@ -35,7 +35,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ==> Plugin management
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 " let Vundle manage itself
 Bundle 'gmarik/vundle'
